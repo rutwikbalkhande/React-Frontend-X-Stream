@@ -13,11 +13,6 @@ export default function Header() {
         style={{
           backgroundColor: "#fdfdfd"
         }}
-        // close dropdowns when leaving the nav area
-        onMouseLeave={() => {
-          setProductsOpen(false);
-          setClaimsOpen(false);
-        }}
       >
         {/* Logo */}
         <div className="flex items-center">
@@ -43,24 +38,26 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium text-sm">
+          <a href="/Home" className="text-gray-700 hover:text-gray-900 font-medium text-sm">
             Home
           </a>
+          
           {/* Products Dropdown */}
           <div
             className="relative group"
             onMouseEnter={() => { setProductsOpen(true); setClaimsOpen(false); }}
-            onMouseLeave={() => { setProductsOpen(false); }}
           >
             <button 
-              onClick={() => setProductsOpen(!productsOpen)}
               className="text-gray-700 hover:text-gray-900 font-medium text-sm flex items-center">
               Products
               <ChevronDown size={16} className={`ml-1 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
             </button>
             {productsOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-200">
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 font-medium text-sm">
+              <div 
+                className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-200"
+                onMouseLeave={() => setProductsOpen(false)}
+              >
+                <a href="/Login" className="block px-4 py-2 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 font-medium text-sm">
                   Life Insurance
                 </a>
                 <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 font-medium text-sm">
@@ -77,16 +74,17 @@ export default function Header() {
           <div
             className="relative group"
             onMouseEnter={() => { setClaimsOpen(true); setProductsOpen(false); }}
-            onMouseLeave={() => { setClaimsOpen(false); }}
           >
             <button 
-              onClick={() => setClaimsOpen(!claimsOpen)}
               className="text-gray-700 hover:text-gray-900 font-medium text-sm flex items-center">
               Claims
               <ChevronDown size={16} className={`ml-1 transition-transform ${claimsOpen ? 'rotate-180' : ''}`} />
             </button>
             {claimsOpen && (
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-200">
+              <div 
+                className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-200"
+                onMouseLeave={() => setClaimsOpen(false)}
+              >
                 <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-cyan-50 hover:text-cyan-600 font-medium text-sm">
                   Submit Claim
                 </a>
